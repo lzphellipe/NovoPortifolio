@@ -1,6 +1,6 @@
-/* Portfolio Style - Based on Exoplanet Hunter with Blue Theme */
+/* STAR WARS PORTFOLIO THEME */
 
-@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&family=Pathway+Gothic+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pathway+Gothic+One&family=Russo+One&family=Orbitron:wght@400;500;600;700;800;900&display=swap');
 
 * {
     margin: 0;
@@ -9,33 +9,27 @@
 }
 
 :root {
+    --sw-yellow: #E8D5A0;
+    --sw-gold: #D4AF37;
+    --sw-dark-gold: #B8975F;
     --black: #0d0d0d;
-    --dark-gray: #1a1a1a;
-    --medium-gray: #2d2d2d;
-    --light-gray: #4a4a4a;
-
-    /* Blue Theme Colors */
-    --primary-blue: #4A90E2;
-    --light-blue: #7BB3FF;
-    --dark-blue: #2C5F9E;
-    --cyan: #00D9FF;
-    --electric-blue: #5B9BD5;
-
-    --white: #f5f5f5;
-    --off-white: #e0e0e0;
-    --glow-blue: rgba(74, 144, 226, 0.6);
+    --dark-space: #1a1a1a;
+    --space-blue: #0d1117;
+    --light-gray: #c9d1d9;
+    --text-gray: #8b949e;
+    --border-glow: rgba(212, 175, 95, 0.5);
 }
 
 body {
-    font-family: 'Barlow', sans-serif;
+    font-family: 'Orbitron', sans-serif;
     background: var(--black);
-    color: var(--off-white);
+    color: var(--light-gray);
     overflow-x: hidden;
     line-height: 1.6;
 }
 
-/* Animated Background */
-.space-background {
+/* ==================== TECH CORE BACKGROUND (FROM PREVIOUS VERSION) ==================== */
+.starfield {
     position: fixed;
     top: 0;
     left: 0;
@@ -46,7 +40,13 @@ body {
     overflow: hidden;
 }
 
-.tech-core {
+.stars-layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.stars-slow {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -56,14 +56,15 @@ body {
     opacity: 0.15;
 }
 
-.core-center {
+.stars-slow::before {
+    content: '';
     position: absolute;
     top: 50%;
     left: 50%;
     width: 150px;
     height: 150px;
     transform: translate(-50%, -50%);
-    background: radial-gradient(circle, transparent 40%, rgba(74, 144, 226, 0.1) 60%, transparent 100%);
+    background: radial-gradient(circle, transparent 40%, rgba(212, 175, 95, 0.1) 60%, transparent 100%);
     border-radius: 50%;
     animation: pulse-core 4s ease-in-out infinite;
 }
@@ -73,7 +74,7 @@ body {
     50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.5; }
 }
 
-.tech-rings {
+.stars-medium {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -86,71 +87,93 @@ body {
     to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-.ring {
+.stars-medium::after,
+.stars-medium::before {
+    content: '';
     position: absolute;
     top: 50%;
     left: 50%;
     border-radius: 50%;
-    border: 1px solid rgba(74, 144, 226, 0.15);
+    border: 1px solid rgba(212, 175, 95, 0.15);
 }
 
-.ring:nth-child(1) {
+.stars-medium::before {
     width: 300px;
     height: 100px;
     margin-left: -150px;
     margin-top: -50px;
     border-top-color: transparent;
-    border-bottom-color: rgba(74, 144, 226, 0.25);
+    border-bottom-color: rgba(212, 175, 95, 0.25);
 }
 
-.ring:nth-child(2) {
+.stars-medium::after {
     width: 400px;
     height: 133px;
     margin-left: -200px;
     margin-top: -66px;
     border-top-color: transparent;
-    border-bottom-color: rgba(0, 217, 255, 0.2);
+    border-bottom-color: rgba(212, 175, 95, 0.2);
 }
 
-.ring:nth-child(3) {
-    width: 500px;
-    height: 166px;
-    margin-left: -250px;
-    margin-top: -83px;
-    border-top-color: transparent;
-    border-bottom-color: rgba(91, 155, 213, 0.15);
-}
-
-/* Particles */
-.particles {
+.stars-fast {
     position: absolute;
     width: 100%;
     height: 100%;
 }
 
-.particle {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    background: rgba(74, 144, 226, 0.5);
-    border-radius: 50%;
-    animation: float 10s infinite ease-in-out;
+/* Floating Particles Animation */
+@keyframes float-particle {
+    0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh) translateX(50px);
+        opacity: 0;
+    }
 }
 
-@keyframes float {
-    0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
-    10% { opacity: 1; }
-    90% { opacity: 1; }
-    100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
+/* Add subtle glow to particles */
+.stars-fast > div {
+    box-shadow: 0 0 6px rgba(212, 175, 95, 0.8);
 }
 
-/* Header */
+/* ==================== STAR WARS TEXT EFFECT ==================== */
+.star-wars-text {
+    font-family: 'Pathway Gothic One', sans-serif;
+    font-weight: 400;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    color: var(--sw-yellow);
+    text-shadow:
+        0 0 10px rgba(212, 175, 95, 0.6),
+        0 0 20px rgba(212, 175, 95, 0.4),
+        0 0 30px rgba(212, 175, 95, 0.2),
+        2px 2px 4px rgba(0, 0, 0, 0.8);
+    position: relative;
+}
+
+.title-line {
+    width: 150px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--sw-gold), transparent);
+    margin: 1rem auto;
+    box-shadow: 0 0 8px rgba(212, 175, 95, 0.4);
+}
+
+/* ==================== HEADER ==================== */
 header {
     position: relative;
-    padding: 2rem 4rem;
-    background: linear-gradient(180deg, rgba(26, 26, 26, 0.9) 0%, transparent 100%);
-    border-bottom: 1px solid rgba(74, 144, 226, 0.2);
-    backdrop-filter: blur(10px);
+    padding: 1.5rem 4rem;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, transparent 100%);
+    border-bottom: 2px solid var(--sw-gold);
+    box-shadow: 0 2px 20px rgba(255, 232, 31, 0.3);
 }
 
 .header-content {
@@ -168,110 +191,108 @@ header {
 }
 
 .logo-icon {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     position: relative;
 }
 
-.orbit {
+.rebel-symbol {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.symbol-line {
     position: absolute;
-    border: 2px solid var(--primary-blue);
-    border-radius: 50%;
-    opacity: 0.6;
+    width: 100%;
+    height: 3px;
+    background: var(--sw-yellow);
+    box-shadow: 0 0 10px var(--sw-yellow);
 }
 
-.orbit-1 {
-    width: 60px;
-    height: 60px;
-    animation: rotate 10s linear infinite;
+.line-1 {
+    top: 15px;
+    transform: rotate(45deg);
 }
 
-.orbit-2 {
-    width: 45px;
-    height: 45px;
-    top: 7.5px;
-    left: 7.5px;
-    animation: rotate 7s linear infinite reverse;
+.line-2 {
+    top: 15px;
+    transform: rotate(-45deg);
 }
 
-@keyframes rotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
-.core-dot {
+.symbol-circle {
     position: absolute;
-    width: 20px;
-    height: 20px;
-    background: linear-gradient(135deg, var(--primary-blue), var(--cyan));
+    width: 15px;
+    height: 15px;
+    border: 3px solid var(--sw-yellow);
     border-radius: 50%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    box-shadow: 0 0 20px var(--glow-blue);
+    box-shadow: 0 0 12px rgba(212, 175, 95, 0.5);
 }
 
-.logo h1 {
+.star-wars-title {
     font-family: 'Pathway Gothic One', sans-serif;
     font-size: 2rem;
-    font-weight: 400;
-    letter-spacing: 4px;
+    letter-spacing: 6px;
     text-transform: uppercase;
-    color: var(--white);
+    color: var(--sw-yellow);
+    text-shadow: 0 0 15px rgba(212, 175, 95, 0.5);
 }
 
-/* Navigation */
+/* ==================== NAVIGATION ==================== */
 nav {
     display: flex;
-    gap: 3rem;
+    gap: 2rem;
 }
 
-nav button {
-    font-family: 'Barlow', sans-serif;
-    font-size: 0.95rem;
-    font-weight: 400;
-    color: var(--off-white);
+.nav-btn {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--light-gray);
     background: none;
     border: none;
     cursor: pointer;
-    padding: 0.5rem 0;
+    padding: 0.5rem 1rem;
     position: relative;
     transition: all 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 2px;
 }
 
-nav button:hover {
-    color: var(--primary-blue);
-}
-
-nav button::after {
+.nav-btn::before {
     content: '';
     position: absolute;
     bottom: 0;
     left: 50%;
     width: 0;
-    height: 1px;
-    background: var(--primary-blue);
+    height: 2px;
+    background: var(--sw-yellow);
     transition: all 0.3s ease;
     transform: translateX(-50%);
+    box-shadow: 0 0 8px rgba(212, 175, 95, 0.5);
 }
 
-nav button:hover::after {
+.nav-btn:hover {
+    color: var(--sw-yellow);
+    text-shadow: 0 0 8px rgba(212, 175, 95, 0.4);
+}
+
+.nav-btn:hover::before {
     width: 100%;
 }
 
-/* Container */
+/* ==================== CONTAINER ==================== */
 .container {
     max-width: 1400px;
     margin: 0 auto;
     padding: 2rem 4rem;
 }
 
-/* Content Sections */
 .content-section {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
+    padding: 4rem 0;
     min-height: 60vh;
 }
 
@@ -279,274 +300,581 @@ nav button:hover::after {
     display: none !important;
 }
 
-/* Hero Section */
+/* ==================== HERO SECTION ==================== */
 .hero {
     text-align: center;
     padding: 5rem 0;
-    position: relative;
+}
+
+.crawl-container {
+    margin-bottom: 2rem;
 }
 
 .hero-title {
-    font-family: 'Pathway Gothic One', sans-serif;
-    font-size: 4rem;
-    font-weight: 400;
-    margin-bottom: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 8px;
-    color: var(--white);
-    text-shadow: 0 0 30px rgba(74, 144, 226, 0.3);
+    font-size: 4.5rem;
+    margin-bottom: 0.5rem;
+    animation: fadeInDown 1.5s ease;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .hero-subtitle {
-    font-size: 1.1rem;
-    color: var(--off-white);
+    font-size: 1.3rem;
+    color: var(--sw-gold);
+    margin: 2rem auto;
     max-width: 700px;
-    margin: 0 auto 3rem;
-    font-weight: 300;
-    letter-spacing: 1px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    animation: fadeIn 2s ease 0.5s both;
 }
 
-/* Stats Cards */
+.hero-description {
+    font-size: 1.1rem;
+    color: var(--light-gray);
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    line-height: 1.8;
+    animation: fadeIn 2s ease 1s both;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* ==================== STATS CARDS ==================== */
 .hero-stats {
     display: flex;
     justify-content: center;
     gap: 4rem;
-    margin-top: 4rem;
+    margin: 4rem 0;
 }
 
 .stat-card {
     position: relative;
     padding: 2rem;
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid var(--sw-gold);
+    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+    transition: all 0.3s ease;
 }
 
-.stat-card::before {
+.stat-card:hover {
+    border-color: var(--sw-yellow);
+    box-shadow: 0 0 25px rgba(212, 175, 95, 0.3);
+    transform: translateY(-5px);
+}
+
+.stat-value {
+    font-family: 'Pathway Gothic One', sans-serif;
+    font-size: 4rem;
+    color: var(--sw-yellow);
+    text-shadow: 0 0 15px rgba(212, 175, 95, 0.5);
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: var(--text-gray);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 1rem;
+}
+
+/* ==================== MISSION BRIEFING ==================== */
+.mission-briefing {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(10, 10, 10, 0.9));
+    border: 2px solid var(--sw-gold);
+    border-left: 5px solid var(--sw-yellow);
+    padding: 3rem;
+    margin: 4rem 0;
+    position: relative;
+    box-shadow: 0 0 25px rgba(212, 175, 95, 0.15);
+}
+
+.mission-briefing::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
-    border: 1px solid rgba(74, 144, 226, 0.3);
-    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
-}
-
-.stat-value {
-    font-family: 'Pathway Gothic One', sans-serif;
-    font-size: 3.5rem;
-    font-weight: 400;
-    color: var(--primary-blue);
-    text-shadow: 0 0 20px var(--glow-blue);
-    line-height: 1;
-}
-
-.stat-label {
-    font-size: 0.85rem;
-    color: var(--off-white);
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    margin-top: 1rem;
-    font-weight: 300;
-}
-
-/* Developer Briefing */
-.dev-briefing {
-    background: linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(13, 13, 13, 0.9) 100%);
-    border: 1px solid rgba(74, 144, 226, 0.2);
-    padding: 3rem;
-    margin: 3rem 0;
-    position: relative;
-    backdrop-filter: blur(10px);
-}
-
-.dev-briefing::before {
-    content: '';
-    position: absolute;
-    top: -1px;
-    left: 30px;
-    right: 30px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--primary-blue), transparent);
-}
-
-.dev-briefing::after {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: 30px;
-    right: 30px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--primary-blue), transparent);
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--sw-gold), transparent);
+    box-shadow: 0 0 8px rgba(212, 175, 95, 0.4);
 }
 
 .briefing-header {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 1.5rem;
     margin-bottom: 2rem;
 }
 
 .briefing-icon {
-    width: 40px;
-    height: 40px;
-    border: 2px solid var(--primary-blue);
-    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    border: 2px solid var(--sw-yellow);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--primary-blue);
-    font-size: 1.2rem;
+    color: var(--sw-yellow);
+    font-size: 1.5rem;
+    clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
+    box-shadow: 0 0 12px rgba(212, 175, 95, 0.4);
 }
 
 .briefing-title {
     font-family: 'Pathway Gothic One', sans-serif;
-    font-size: 1.8rem;
-    color: var(--primary-blue);
-    text-transform: uppercase;
-    letter-spacing: 3px;
-}
-
-.briefing-content {
-    font-size: 1.05rem;
-    line-height: 1.8;
-    color: var(--off-white);
-    font-weight: 300;
-}
-
-/* Action Grid */
-.action-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
-    margin: 3rem 0;
-}
-
-.action-card {
-    background: linear-gradient(135deg, rgba(26, 26, 26, 0.6) 0%, rgba(13, 13, 13, 0.8) 100%);
-    border: 1px solid rgba(74, 144, 226, 0.2);
-    padding: 2.5rem;
-    position: relative;
-    transition: all 0.4s ease;
-    cursor: pointer;
-    backdrop-filter: blur(5px);
-}
-
-.action-card:hover {
-    border-color: var(--primary-blue);
-    box-shadow: 0 0 40px rgba(74, 144, 226, 0.2);
-    transform: translateY(-5px);
-}
-
-.action-card::before {
-    content: '';
-    position: absolute;
-    top: -1px;
-    left: -1px;
-    width: 0;
-    height: 1px;
-    background: var(--primary-blue);
-    transition: width 0.4s ease;
-}
-
-.action-card:hover::before {
-    width: 50%;
-}
-
-.action-number {
-    font-family: 'Pathway Gothic One', sans-serif;
-    font-size: 4rem;
-    color: rgba(74, 144, 226, 0.2);
-    line-height: 1;
-    margin-bottom: 1rem;
-}
-
-.action-title {
-    font-family: 'Pathway Gothic One', sans-serif;
-    font-size: 1.5rem;
-    color: var(--primary-blue);
-    margin-bottom: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-.action-description {
-    color: var(--off-white);
-    margin-bottom: 2rem;
-    font-weight: 300;
-    line-height: 1.6;
-}
-
-/* Section Title */
-.section-title {
-    font-family: 'Pathway Gothic One', sans-serif;
-    font-size: 3rem;
-    color: var(--primary-blue);
-    text-align: center;
-    margin-bottom: 3rem;
+    font-size: 2rem;
+    color: var(--sw-yellow);
     text-transform: uppercase;
     letter-spacing: 4px;
 }
 
-/* About Section */
-.about-grid {
+.briefing-content {
+    color: var(--light-gray);
+    line-height: 1.8;
+    font-size: 1.05rem;
+}
+
+.force-divider {
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--sw-gold), transparent);
+    margin: 1.5rem 0;
+}
+
+.nasa-highlight {
+    background: linear-gradient(135deg, rgba(255, 232, 31, 0.1), rgba(255, 197, 0, 0.05));
+    border-left: 4px solid var(--sw-yellow);
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.nasa-highlight strong {
+    color: var(--sw-yellow);
+    font-size: 1.2rem;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.highlight-subtitle {
+    color: var(--sw-gold);
+    font-weight: 600;
+}
+
+.highlight-desc {
+    color: var(--text-gray);
+    font-size: 0.95rem;
+}
+
+/* ==================== SPECIALTIES GRID ==================== */
+.specialties-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 2rem;
+    margin: 4rem 0;
+}
+
+.specialty-card {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(10, 10, 10, 0.8));
+    border: 2px solid var(--sw-dark-gold);
+    padding: 2.5rem;
+    position: relative;
+    transition: all 0.4s ease;
+    clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 15px 100%, 0 calc(100% - 15px));
+}
+
+.specialty-card:hover {
+    border-color: var(--sw-yellow);
+    box-shadow: 0 0 40px rgba(255, 232, 31, 0.3);
+    transform: translateY(-10px);
+}
+
+.card-number {
+    font-family: 'Pathway Gothic One', sans-serif;
+    font-size: 5rem;
+    color: rgba(255, 232, 31, 0.15);
+    line-height: 1;
+    margin-bottom: 1rem;
+}
+
+.card-title {
+    font-family: 'Pathway Gothic One', sans-serif;
+    font-size: 1.8rem;
+    color: var(--sw-yellow);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.card-description {
+    color: var(--light-gray);
+    line-height: 1.8;
+}
+
+.card-line {
+    width: 50px;
+    height: 3px;
+    background: var(--sw-yellow);
+    margin-top: 1.5rem;
+    box-shadow: 0 0 10px var(--sw-yellow);
+}
+
+/* ==================== SECTION TITLE ==================== */
+.section-title {
+    font-size: 4rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+/* ==================== ACHIEVEMENT PANEL ==================== */
+.achievement-panel {
+    background: linear-gradient(135deg, rgba(212, 175, 95, 0.08), rgba(212, 175, 95, 0.05));
+    border: 3px solid var(--sw-gold);
+    border-radius: 8px;
+    padding: 3rem;
+    margin: 3rem 0;
+    position: relative;
+    overflow: hidden;
+    animation: slideInFromLeft 1s ease;
+}
+
+@keyframes slideInFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.panel-glow {
+    position: absolute;
+    top: -2px;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, var(--sw-gold), transparent);
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.achievement-content {
+    position: relative;
+    z-index: 2;
+}
+
+.achievement-icon {
+    font-size: 5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    animation: floatIcon 3s ease-in-out infinite;
+}
+
+@keyframes floatIcon {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+.achievement-title {
+    font-family: 'Pathway Gothic One', sans-serif;
+    font-size: 2.2rem;
+    color: var(--sw-yellow);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 15px rgba(212, 175, 95, 0.4);
+}
+
+.achievement-subtitle {
+    color: var(--sw-gold);
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-weight: 600;
+}
+
+.achievement-text {
+    color: var(--light-gray);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    font-size: 1.05rem;
+}
+
+.achievement-text strong {
+    color: var(--sw-gold);
+}
+
+.tech-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
     margin-top: 2rem;
 }
 
-.about-card {
-    background: linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(13, 13, 13, 0.9) 100%);
-    border: 1px solid rgba(74, 144, 226, 0.2);
-    border-left: 3px solid var(--primary-blue);
+.tech-badge {
+    background: rgba(212, 175, 95, 0.1);
+    color: var(--sw-yellow);
+    padding: 0.6rem 1.5rem;
+    border: 2px solid var(--sw-dark-gold);
+    clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.tech-badge:hover {
+    background: rgba(212, 175, 95, 0.2);
+    border-color: var(--sw-yellow);
+    box-shadow: 0 0 12px rgba(212, 175, 95, 0.3);
+    transform: translateY(-3px);
+}
+
+/* ==================== CHRONICLES GRID ==================== */
+.chronicles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.chronicle-panel {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(10, 10, 10, 0.9));
+    border: 2px solid var(--sw-dark-gold);
+    border-left: 5px solid var(--sw-yellow);
     padding: 2.5rem;
-    backdrop-filter: blur(5px);
 }
 
-.about-card h3 {
+.panel-title {
     font-family: 'Pathway Gothic One', sans-serif;
-    font-size: 1.5rem;
-    color: var(--primary-blue);
-    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    color: var(--sw-yellow);
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
+    margin-bottom: 1.5rem;
 }
 
-.about-card p {
-    margin-bottom: 1rem;
+.panel-content p {
+    margin-bottom: 1.5rem;
     line-height: 1.8;
-    color: var(--off-white);
+    color: var(--light-gray);
 }
 
-.education-item {
-    background: rgba(13, 13, 13, 0.5);
+.education-block {
+    background: rgba(0, 0, 0, 0.5);
     padding: 1.5rem;
+    border-left: 3px solid var(--sw-gold);
     margin-bottom: 1rem;
-    border-left: 2px solid var(--cyan);
 }
 
 .edu-title {
-    font-size: 1.1rem;
-    color: var(--light-blue);
-    font-weight: 600;
+    font-size: 1.2rem;
+    color: var(--sw-gold);
+    font-weight: 700;
     margin-bottom: 0.5rem;
 }
 
 .edu-institution {
-    color: var(--off-white);
+    color: var(--light-gray);
     margin-bottom: 0.3rem;
 }
 
 .edu-status {
-    color: var(--light-gray);
+    color: var(--text-gray);
     font-size: 0.9rem;
 }
 
-/* Skills Terminal */
-.skills-terminal {
-    background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(13, 13, 13, 0.95) 100%);
-    border: 1px solid rgba(74, 144, 226, 0.2);
-    padding: 2.5rem;
-    backdrop-filter: blur(10px);
+.force-divider-small {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--sw-dark-gold), transparent);
+    margin: 1rem 0;
+}
+
+/* ==================== ARSENAL GRID ==================== */
+.arsenal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.arsenal-card {
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid var(--sw-dark-gold);
+    border-left: 4px solid var(--sw-yellow);
+    padding: 2rem;
+    transition: all 0.3s ease;
+}
+
+.arsenal-card:hover {
+    border-color: var(--sw-yellow);
+    box-shadow: 0 0 30px rgba(255, 232, 31, 0.2);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.card-icon {
+    font-size: 2rem;
+    color: var(--sw-yellow);
+}
+
+.card-header h4 {
+    font-family: 'Pathway Gothic One', sans-serif;
+    font-size: 1.5rem;
+    color: var(--sw-gold);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+.skill-item {
+    background: rgba(255, 232, 31, 0.08);
+    color: var(--sw-gold);
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--sw-dark-gold);
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.skill-item:hover {
+    background: rgba(255, 232, 31, 0.15);
+    border-color: var(--sw-yellow);
+    color: var(--sw-yellow);
+}
+
+/* ==================== TIMELINE ==================== */
+.timeline {
+    position: relative;
+    max-width: 1000px;
+    margin: 3rem auto;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--sw-yellow), var(--sw-dark-gold));
+    box-shadow: 0 0 10px var(--sw-yellow);
+}
+
+.timeline-item {
+    margin-bottom: 4rem;
+    position: relative;
+}
+
+.timeline-panel {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(10, 10, 10, 0.9));
+    border: 2px solid var(--sw-dark-gold);
+    padding: 2rem;
+    width: calc(50% - 40px);
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+    transition: all 0.3s ease;
+}
+
+.timeline-panel:hover {
+    border-color: var(--sw-yellow);
+    box-shadow: 0 0 30px rgba(255, 232, 31, 0.3);
+}
+
+.timeline-item:nth-child(odd) .timeline-panel {
+    margin-left: auto;
+}
+
+.timeline-marker {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 20px;
+    background: var(--sw-yellow);
+    border: 4px solid var(--black);
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    top: 30px;
+    box-shadow: 0 0 20px var(--sw-yellow);
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--sw-dark-gold);
+}
+
+.company-name {
+    font-family: 'Pathway Gothic One', sans-serif;
+    font-size: 1.5rem;
+    color: var(--sw-yellow);
+    letter-spacing: 2px;
+}
+
+.time-period {
+    color: var(--text-gray);
+    font-size: 0.9rem;
+}
+
+.job-title {
+    color: var(--sw-gold);
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.mission-details {
+    color: var(--light-gray);
+    line-height: 1.7;
+}
+
+.mission-details ul {
+    margin-left: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.mission-details li {
+    margin-bottom: 0.5rem;
+}
+
+/* ==================== CONTACT TERMINAL ==================== */
+.contact-terminal {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(10, 10, 10, 0.95));
+    border: 3px solid var(--sw-yellow);
+    padding: 3rem;
+    max-width: 900px;
+    margin: 0 auto;
+    box-shadow: 0 0 40px rgba(255, 232, 31, 0.3);
 }
 
 .terminal-header {
@@ -555,216 +883,69 @@ nav button:hover::after {
     align-items: center;
     margin-bottom: 2rem;
     padding-bottom: 1.5rem;
-    border-bottom: 1px solid rgba(74, 144, 226, 0.2);
+    border-bottom: 2px solid var(--sw-dark-gold);
 }
 
 .terminal-title {
     font-family: 'Pathway Gothic One', sans-serif;
-    font-size: 1.5rem;
-    color: var(--primary-blue);
+    font-size: 1.8rem;
+    color: var(--sw-yellow);
     text-transform: uppercase;
     letter-spacing: 3px;
-}
-
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
-.skill-category {
-    background: rgba(13, 13, 13, 0.5);
-    border-left: 2px solid var(--primary-blue);
-    padding: 1.5rem;
-    position: relative;
-}
-
-.category-header {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    margin-bottom: 1.5rem;
-}
-
-.category-icon {
-    color: var(--cyan);
-    font-size: 1.2rem;
-}
-
-.skill-category h4 {
-    font-family: 'Pathway Gothic One', sans-serif;
-    font-size: 1.2rem;
-    color: var(--light-blue);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-.skill-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.8rem;
-}
-
-.skill-tag {
-    background: rgba(74, 144, 226, 0.1);
-    color: var(--light-blue);
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    border: 1px solid rgba(74, 144, 226, 0.3);
-    transition: all 0.3s ease;
-}
-
-.skill-tag:hover {
-    background: rgba(74, 144, 226, 0.2);
-    border-color: var(--primary-blue);
-}
-
-/* Timeline */
-.timeline {
-    position: relative;
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-.timeline::before {
-    content: '';
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 2px;
-    height: 100%;
-    background: var(--primary-blue);
-}
-
-.timeline-item {
-    margin-bottom: 3rem;
-    position: relative;
-}
-
-.timeline-content {
-    background: linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(13, 13, 13, 0.9) 100%);
-    border: 1px solid rgba(74, 144, 226, 0.2);
-    padding: 2rem;
-    border-radius: 8px;
-    width: calc(50% - 40px);
-    position: relative;
-}
-
-.timeline-item:nth-child(odd) .timeline-content {
-    margin-left: auto;
-}
-
-.timeline-dot {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 20px;
-    height: 20px;
-    background: var(--primary-blue);
-    border-radius: 50%;
-    top: 30px;
-    border: 4px solid var(--dark-gray);
-    box-shadow: 0 0 20px var(--glow-blue);
-}
-
-.company-name {
-    color: var(--primary-blue);
-    font-weight: bold;
-    font-size: 1.3rem;
-    margin-bottom: 0.5rem;
-    font-family: 'Pathway Gothic One', sans-serif;
-    letter-spacing: 2px;
-}
-
-.job-title {
-    color: var(--light-blue);
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-}
-
-.job-period {
-    color: var(--light-gray);
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
-}
-
-.job-description {
-    color: var(--off-white);
-    line-height: 1.6;
-}
-
-.job-description ul {
-    margin-left: 1.5rem;
-    margin-top: 0.5rem;
-}
-
-.job-description li {
-    margin-bottom: 0.5rem;
-}
-
-/* Contact Terminal */
-.contact-terminal {
-    background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(13, 13, 13, 0.95) 100%);
-    border: 1px solid rgba(74, 144, 226, 0.2);
-    padding: 2.5rem;
-    backdrop-filter: blur(10px);
-    max-width: 800px;
-    margin: 0 auto;
 }
 
 .terminal-status {
     display: flex;
     align-items: center;
     gap: 0.8rem;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
 }
 
-.status-indicator {
-    width: 8px;
-    height: 8px;
-    background: var(--primary-blue);
+.status-light {
+    width: 12px;
+    height: 12px;
+    background: var(--sw-yellow);
     border-radius: 50%;
-    box-shadow: 0 0 10px var(--glow-blue);
-    animation: pulse-status 2s ease-in-out infinite;
+    box-shadow: 0 0 15px var(--sw-yellow);
+    animation: pulse 2s infinite;
 }
 
-.status-success {
-    background: #6cff6c;
-    box-shadow: 0 0 10px rgba(108, 255, 108, 0.6);
-}
-
-@keyframes pulse-status {
+@keyframes pulse {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.4; }
 }
 
+.terminal-status span {
+    color: var(--sw-gold);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
 .contact-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
     margin-top: 2rem;
 }
 
-.contact-item {
-    background: rgba(13, 13, 13, 0.5);
-    border-left: 2px solid var(--primary-blue);
+.contact-card {
+    background: rgba(0, 0, 0, 0.6);
+    border-left: 3px solid var(--sw-yellow);
     padding: 1.5rem;
     display: flex;
     align-items: flex-start;
-    gap: 1rem;
+    gap: 1.5rem;
     transition: all 0.3s ease;
 }
 
-.contact-item:hover {
-    background: rgba(74, 144, 226, 0.05);
-    border-left-color: var(--cyan);
+.contact-card:hover {
+    background: rgba(255, 232, 31, 0.05);
+    border-left-color: var(--sw-gold);
+    box-shadow: 0 0 20px rgba(255, 232, 31, 0.2);
 }
 
 .contact-icon {
-    font-size: 2rem;
+    font-size: 2.5rem;
     min-width: 50px;
     text-align: center;
 }
@@ -775,58 +956,68 @@ nav button:hover::after {
 
 .contact-label {
     font-size: 0.75rem;
-    color: var(--light-gray);
+    color: var(--text-gray);
     text-transform: uppercase;
     letter-spacing: 2px;
     margin-bottom: 0.5rem;
 }
 
 .contact-info a {
-    color: var(--light-blue);
+    color: var(--sw-gold);
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 .contact-info a:hover {
-    color: var(--cyan);
+    color: var(--sw-yellow);
+    text-shadow: 0 0 10px rgba(255, 232, 31, 0.6);
 }
 
 .contact-info span {
-    color: var(--off-white);
+    color: var(--light-gray);
 }
 
-/* Footer */
+/* ==================== FOOTER ==================== */
 footer {
     text-align: center;
     padding: 3rem 2rem;
     margin-top: 5rem;
-    border-top: 1px solid rgba(74, 144, 226, 0.2);
-    color: var(--light-gray);
-    font-size: 0.9rem;
+    border-top: 2px solid var(--sw-gold);
+    background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.8));
+}
+
+.footer-text {
+    color: var(--sw-gold);
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
 }
 
 footer a {
-    color: var(--primary-blue);
+    color: var(--sw-yellow);
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 footer a:hover {
-    color: var(--cyan);
+    text-shadow: 0 0 10px rgba(255, 232, 31, 0.8);
 }
 
-.footer-links {
-    margin-top: 0.5rem;
+.footer-quote {
+    margin-top: 1.5rem;
+    color: var(--sw-yellow);
+    font-style: italic;
+    font-size: 1.1rem;
 }
 
-/* Loading Overlay */
+/* ==================== LOADING ==================== */
 .loading-overlay {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.95);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -835,13 +1026,14 @@ footer a:hover {
 }
 
 .spinner {
-    width: 60px;
-    height: 60px;
-    border: 2px solid rgba(74, 144, 226, 0.2);
-    border-top: 2px solid var(--primary-blue);
+    width: 80px;
+    height: 80px;
+    border: 4px solid rgba(255, 232, 31, 0.2);
+    border-top: 4px solid var(--sw-yellow);
     border-radius: 50%;
     animation: spin 1.5s linear infinite;
-    margin-bottom: 1.5rem;
+    box-shadow: 0 0 30px rgba(255, 232, 31, 0.5);
+    margin-bottom: 2rem;
 }
 
 @keyframes spin {
@@ -850,25 +1042,28 @@ footer a:hover {
 }
 
 .loading-overlay p {
-    color: var(--primary-blue);
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 3px;
+    color: var(--sw-yellow);
+    font-size: 1.1rem;
+    letter-spacing: 2px;
 }
 
-/* Responsive */
+/* ==================== RESPONSIVE ==================== */
 @media (max-width: 900px) {
     .timeline::before {
         left: 0;
     }
 
-    .timeline-content {
+    .timeline-panel {
         width: calc(100% - 40px);
         margin-left: 40px !important;
     }
 
-    .timeline-dot {
+    .timeline-marker {
         left: 0;
+    }
+
+    .achievement-panel {
+        padding: 2rem;
     }
 }
 
@@ -878,7 +1073,7 @@ footer a:hover {
     }
 
     .hero-title {
-        font-size: 2.5rem;
+        font-size: 3rem;
     }
 
     .hero-stats {
@@ -891,19 +1086,23 @@ footer a:hover {
         gap: 1rem;
     }
 
-    .action-grid {
+    .specialties-grid {
         grid-template-columns: 1fr;
     }
 
-    .about-grid {
+    .chronicles-grid {
         grid-template-columns: 1fr;
     }
 
-    .skills-grid {
+    .arsenal-grid {
         grid-template-columns: 1fr;
     }
 
     .contact-grid {
         grid-template-columns: 1fr;
+    }
+
+    .section-title {
+        font-size: 2.5rem;
     }
 }

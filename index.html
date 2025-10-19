@@ -7,39 +7,36 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="space-background">
-    <div class="tech-core" aria-hidden="true">
-        <div class="core-center"></div>
-        <div class="tech-rings">
-            <div class="ring"></div>
-            <div class="ring"></div>
-            <div class="ring"></div>
-        </div>
-    </div>
-    <div class="particles" id="particles" aria-hidden="true"></div>
+<!-- Star Wars Starfield Background -->
+<div class="starfield">
+    <div class="stars-layer stars-slow"></div>
+    <div class="stars-layer stars-medium"></div>
+    <div class="stars-layer stars-fast"></div>
 </div>
 
 <div class="loading-overlay" id="loading" style="display: none;">
     <div class="spinner"></div>
-    <p>Loading Portfolio...</p>
+    <p>Loading from a galaxy far, far away...</p>
 </div>
 
 <header>
     <div class="header-content">
         <div class="logo">
-            <div class="logo-icon" aria-hidden="true">
-                <div class="orbit orbit-1"></div>
-                <div class="orbit orbit-2"></div>
-                <div class="core-dot"></div>
+            <div class="logo-icon">
+                <div class="rebel-symbol">
+                    <div class="symbol-line line-1"></div>
+                    <div class="symbol-line line-2"></div>
+                    <div class="symbol-circle"></div>
+                </div>
             </div>
-            <h1>Luiz Felipe</h1>
+            <h1 class="star-wars-title">Luiz Felipe</h1>
         </div>
         <nav>
-            <button type="button" onclick="showSection('home')">Home</button>
-            <button type="button" onclick="showSection('about')">About</button>
-            <button type="button" onclick="showSection('skills')">Skills</button>
-            <button type="button" onclick="showSection('experience')">Experience</button>
-            <button type="button" onclick="showSection('contact')">Contact</button>
+            <button type="button" onclick="showSection('home')" class="nav-btn">Home</button>
+            <button type="button" onclick="showSection('about')" class="nav-btn">About</button>
+            <button type="button" onclick="showSection('skills')" class="nav-btn">Skills</button>
+            <button type="button" onclick="showSection('experience')" class="nav-btn">Experience</button>
+            <button type="button" onclick="showSection('contact')" class="nav-btn">Contact</button>
         </nav>
     </div>
 </header>
@@ -47,96 +44,154 @@
 <main class="container">
     <!-- HOME SECTION -->
     <section class="hero content-section" id="home">
-        <h2 class="hero-title">Into the Code</h2>
+        <div class="crawl-container">
+            <h2 class="hero-title star-wars-text">A NEW HOPE</h2>
+            <div class="title-line"></div>
+        </div>
+
         <p class="hero-subtitle">
-            Full Stack Developer especializado em Java, Spring Boot, Quarkus e Angular.
-            Transformando desafios técnicos em soluções estratégicas.
+            Full Stack Developer | Master of Java, Spring Boot & Angular
+        </p>
+        <p class="hero-description">
+            In a galaxy of code, one developer stands ready to build scalable applications
+            and transform technical challenges into strategic victories.
         </p>
 
-        <div class="hero-stats" role="list">
-            <div class="stat-card" role="listitem">
+        <div class="hero-stats">
+            <div class="stat-card">
                 <div class="stat-value" id="yearsExp">3+</div>
-                <div class="stat-label">Anos de Experiência</div>
+                <div class="stat-label">Years of Experience</div>
             </div>
-            <div class="stat-card" role="listitem">
+            <div class="stat-card">
                 <div class="stat-value" id="projectCount">50+</div>
-                <div class="stat-label">Projetos Entregues</div>
+                <div class="stat-label">Missions Completed</div>
             </div>
-            <div class="stat-card" role="listitem">
+            <div class="stat-card">
                 <div class="stat-value" id="techStack">20+</div>
-                <div class="stat-label">Tecnologias</div>
+                <div class="stat-label">Technologies Mastered</div>
             </div>
         </div>
 
-        <section class="dev-briefing">
+        <section class="mission-briefing">
             <div class="briefing-header">
-                <div class="briefing-icon">◈</div>
-                <h3 class="briefing-title">Developer Profile</h3>
+                <div class="briefing-icon">⚔</div>
+                <h3 class="briefing-title">Developer Codex</h3>
             </div>
             <div class="briefing-content">
                 <p>
-                    Desenvolvedor Full Stack com expertise em arquitetura de microsserviços,
-                    Clean Architecture e metodologias ágeis. Domínio em Java/Spring ecosystem,
-                    frameworks modernos de frontend e práticas de DevOps/Cloud.
+                    A Full Stack Jedi Master with expertise in microservices architecture,
+                    Clean Architecture, and agile methodologies. Commands the Java/Spring ecosystem,
+                    modern frontend frameworks, and DevOps/Cloud practices with precision.
+                </p>
+                <div class="force-divider"></div>
+                <p class="nasa-highlight">
+                    <strong>🏆 NASA SPACE APPS CHALLENGE 2025</strong><br>
+                    <span class="highlight-subtitle">Galactic Victory & Global Nominee</span><br>
+                    <span class="highlight-desc">Team LAZURUS - AI-powered Exoplanet Detection System</span>
                 </p>
             </div>
         </section>
 
-        <div class="action-grid">
-            <div class="action-card">
-                <div class="action-number">01</div>
-                <h3 class="action-title">Backend Development</h3>
-                <p class="action-description">
-                    APIs RESTful, Microsserviços, Spring Boot/Quarkus, Integração de Sistemas
+        <div class="specialties-grid">
+            <div class="specialty-card">
+                <div class="card-number">01</div>
+                <h3 class="card-title">Backend Engineering</h3>
+                <p class="card-description">
+                    RESTful APIs • Microservices • Spring Boot/Quarkus • System Integration
                 </p>
+                <div class="card-line"></div>
             </div>
-            <div class="action-card">
-                <div class="action-number">02</div>
-                <h3 class="action-title">Frontend Engineering</h3>
-                <p class="action-description">
-                    Angular, React, TypeScript, Interfaces Modernas e Responsivas
+            <div class="specialty-card">
+                <div class="card-number">02</div>
+                <h3 class="card-title">Frontend Development</h3>
+                <p class="card-description">
+                    Angular • React • TypeScript • Modern & Responsive Interfaces
                 </p>
+                <div class="card-line"></div>
             </div>
-            <div class="action-card">
-                <div class="action-number">03</div>
-                <h3 class="action-title">Cloud & DevOps</h3>
-                <p class="action-description">
-                    AWS, Docker, Kubernetes, CI/CD, OpenShift, Automação
+            <div class="specialty-card">
+                <div class="card-number">03</div>
+                <h3 class="card-title">Cloud & DevOps</h3>
+                <p class="card-description">
+                    AWS • Docker • Kubernetes • CI/CD • OpenShift • Automation
                 </p>
+                <div class="card-line"></div>
             </div>
         </div>
     </section>
 
     <!-- ABOUT SECTION -->
     <section class="content-section hidden" id="about">
-        <h2 class="section-title">Sobre Mim</h2>
-        <div class="about-grid">
-            <div class="about-card">
-                <h3>Perfil Profissional</h3>
-                <p>
-                    Desenvolvedor Full Stack com mais de 3 anos de experiência,
-                    especializado em criar aplicações web escaláveis e robustas.
-                    Forte background em Java/Spring ecosystem, frameworks modernos
-                    de frontend e práticas de DevOps.
+        <h2 class="section-title star-wars-text">THE CHRONICLES</h2>
+        <div class="title-line"></div>
+
+        <!-- NASA Achievement -->
+        <div class="achievement-panel">
+            <div class="panel-glow"></div>
+            <div class="achievement-content">
+                <div class="achievement-icon">🏆</div>
+                <h3 class="achievement-title">NASA SPACE APPS CHALLENGE 2025</h3>
+                <p class="achievement-subtitle">Global Nominee • Team LAZURUS • Hackathon Brasil</p>
+                <p class="achievement-text">
+                    Our team <strong>LAZURUS</strong> achieved <strong>Victory</strong> and was nominated as
+                    <strong>Global Nominee</strong> at the NASA International Space Apps Challenge 2025.
+                    We tackled an astrophysics challenge focused on discovering exoplanets —
+                    worlds orbiting stars beyond our solar system. 🪐
                 </p>
-                <p>
-                    Atualmente cursando Bacharelado em Ciências de Dados e
-                    Tecnologia da Informação pela UNIVESP, complementando
-                    minha formação técnica com conhecimentos em análise de dados
-                    e machine learning.
+                <p class="achievement-text">
+                    Developed a solution combining <strong>Artificial Intelligence</strong> and
+                    <strong>Machine Learning</strong> to analyze massive datasets from NASA space missions
+                    and automatically identify new exoplanets with precision. A fusion of data science
+                    and space exploration, opening new frontiers for astronomy! 🚀
                 </p>
-            </div>
-            <div class="about-card">
-                <h3>Educação</h3>
-                <div class="education-item">
-                    <div class="edu-title">Bacharelado em Ciências de Dados</div>
-                    <div class="edu-institution">UNIVESP</div>
-                    <div class="edu-status">4º ano - Em andamento</div>
+                <div class="tech-badges">
+                    <span class="tech-badge">Python</span>
+                    <span class="tech-badge">Machine Learning</span>
+                    <span class="tech-badge">LightGBM</span>
+                    <span class="tech-badge">Lightkurve</span>
+                    <span class="tech-badge">Flask</span>
+                    <span class="tech-badge">Angular</span>
+                    <span class="tech-badge">NASA Data</span>
                 </div>
-                <div class="education-item">
-                    <div class="edu-title">Bacharelado em Tecnologia da Informação</div>
-                    <div class="edu-institution">UNIVESP</div>
-                    <div class="edu-status">Último semestre - Em andamento</div>
+            </div>
+        </div>
+
+        <div class="chronicles-grid">
+            <div class="chronicle-panel">
+                <h3 class="panel-title">Profile</h3>
+                <div class="panel-content">
+                    <p>
+                        Full Stack Developer with 3+ years battling complex systems and building
+                        scalable, robust web applications. Strong foundation in Java/Spring ecosystem,
+                        modern frontend frameworks, and DevOps practices.
+                    </p>
+                    <p>
+                        Currently pursuing Bachelor's degrees in Data Science and Information Technology
+                        at UNIVESP, enhancing technical formation with data analysis and machine learning.
+                    </p>
+                    <p>
+                        Driven by technological innovation, combining software development with data science
+                        to create impactful solutions. From corporate financial systems to internationally
+                        recognized space exploration projects by NASA, always transforming complex challenges
+                        into elegant and efficient solutions.
+                    </p>
+                </div>
+            </div>
+
+            <div class="chronicle-panel">
+                <h3 class="panel-title">Training Academy</h3>
+                <div class="panel-content">
+                    <div class="education-block">
+                        <div class="edu-title">Bachelor in Data Science</div>
+                        <div class="edu-institution">UNIVESP</div>
+                        <div class="edu-status">4th Year - In Progress</div>
+                    </div>
+                    <div class="force-divider-small"></div>
+                    <div class="education-block">
+                        <div class="edu-title">Bachelor in Information Technology</div>
+                        <div class="edu-institution">UNIVESP</div>
+                        <div class="edu-status">Final Semester - In Progress</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -144,92 +199,94 @@
 
     <!-- SKILLS SECTION -->
     <section class="content-section hidden" id="skills">
-        <h2 class="section-title">Technical Arsenal</h2>
-        <div class="skills-terminal">
-            <div class="terminal-header">
-                <h3 class="terminal-title">Stack & Technologies</h3>
+        <h2 class="section-title star-wars-text">ARSENAL</h2>
+        <div class="title-line"></div>
+
+        <div class="arsenal-grid">
+            <div class="arsenal-card">
+                <div class="card-header">
+                    <span class="card-icon">⚙</span>
+                    <h4>Backend</h4>
+                </div>
+                <div class="skill-list">
+                    <span class="skill-item">Java</span>
+                    <span class="skill-item">Spring Boot</span>
+                    <span class="skill-item">Quarkus</span>
+                    <span class="skill-item">Python</span>
+                    <span class="skill-item">Django</span>
+                    <span class="skill-item">Node.js</span>
+                    <span class="skill-item">Kotlin</span>
+                </div>
             </div>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <div class="category-header">
-                        <span class="category-icon">◆</span>
-                        <h4>Backend</h4>
-                    </div>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Java</span>
-                        <span class="skill-tag">Spring Boot</span>
-                        <span class="skill-tag">Quarkus</span>
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">Django</span>
-                        <span class="skill-tag">Node.js</span>
-                        <span class="skill-tag">Kotlin</span>
-                    </div>
+
+            <div class="arsenal-card">
+                <div class="card-header">
+                    <span class="card-icon">⚡</span>
+                    <h4>Frontend</h4>
                 </div>
-                <div class="skill-category">
-                    <div class="category-header">
-                        <span class="category-icon">◆</span>
-                        <h4>Frontend</h4>
-                    </div>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Angular</span>
-                        <span class="skill-tag">React.js</span>
-                        <span class="skill-tag">TypeScript</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">HTML/CSS</span>
-                    </div>
+                <div class="skill-list">
+                    <span class="skill-item">Angular</span>
+                    <span class="skill-item">React.js</span>
+                    <span class="skill-item">TypeScript</span>
+                    <span class="skill-item">JavaScript</span>
+                    <span class="skill-item">HTML/CSS</span>
                 </div>
-                <div class="skill-category">
-                    <div class="category-header">
-                        <span class="category-icon">◆</span>
-                        <h4>Cloud & DevOps</h4>
-                    </div>
-                    <div class="skill-tags">
-                        <span class="skill-tag">AWS</span>
-                        <span class="skill-tag">Azure</span>
-                        <span class="skill-tag">Docker</span>
-                        <span class="skill-tag">Kubernetes</span>
-                        <span class="skill-tag">Jenkins</span>
-                        <span class="skill-tag">GitLab CI/CD</span>
-                    </div>
+            </div>
+
+            <div class="arsenal-card">
+                <div class="card-header">
+                    <span class="card-icon">☁</span>
+                    <h4>Cloud & DevOps</h4>
                 </div>
-                <div class="skill-category">
-                    <div class="category-header">
-                        <span class="category-icon">◆</span>
-                        <h4>Databases</h4>
-                    </div>
-                    <div class="skill-tags">
-                        <span class="skill-tag">PostgreSQL</span>
-                        <span class="skill-tag">Oracle</span>
-                        <span class="skill-tag">MongoDB</span>
-                        <span class="skill-tag">Elasticsearch</span>
-                        <span class="skill-tag">SQL Server</span>
-                    </div>
+                <div class="skill-list">
+                    <span class="skill-item">AWS</span>
+                    <span class="skill-item">Azure</span>
+                    <span class="skill-item">Docker</span>
+                    <span class="skill-item">Kubernetes</span>
+                    <span class="skill-item">Jenkins</span>
+                    <span class="skill-item">GitLab CI/CD</span>
                 </div>
-                <div class="skill-category">
-                    <div class="category-header">
-                        <span class="category-icon">◆</span>
-                        <h4>Messaging & Security</h4>
-                    </div>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Kafka</span>
-                        <span class="skill-tag">RabbitMQ</span>
-                        <span class="skill-tag">OAuth2</span>
-                        <span class="skill-tag">JWT</span>
-                        <span class="skill-tag">Keycloak</span>
-                    </div>
+            </div>
+
+            <div class="arsenal-card">
+                <div class="card-header">
+                    <span class="card-icon">💾</span>
+                    <h4>Databases</h4>
                 </div>
-                <div class="skill-category">
-                    <div class="category-header">
-                        <span class="category-icon">◆</span>
-                        <h4>Data & ML</h4>
-                    </div>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Pandas</span>
-                        <span class="skill-tag">NumPy</span>
-                        <span class="skill-tag">Scikit-learn</span>
-                        <span class="skill-tag">Apache Spark</span>
-                        <span class="skill-tag">NLP</span>
-                    </div>
+                <div class="skill-list">
+                    <span class="skill-item">PostgreSQL</span>
+                    <span class="skill-item">Oracle</span>
+                    <span class="skill-item">MongoDB</span>
+                    <span class="skill-item">Elasticsearch</span>
+                    <span class="skill-item">SQL Server</span>
+                </div>
+            </div>
+
+            <div class="arsenal-card">
+                <div class="card-header">
+                    <span class="card-icon">🔐</span>
+                    <h4>Messaging & Security</h4>
+                </div>
+                <div class="skill-list">
+                    <span class="skill-item">Kafka</span>
+                    <span class="skill-item">RabbitMQ</span>
+                    <span class="skill-item">OAuth2</span>
+                    <span class="skill-item">JWT</span>
+                    <span class="skill-item">Keycloak</span>
+                </div>
+            </div>
+
+            <div class="arsenal-card">
+                <div class="card-header">
+                    <span class="card-icon">🧠</span>
+                    <h4>Data & ML</h4>
+                </div>
+                <div class="skill-list">
+                    <span class="skill-item">Pandas</span>
+                    <span class="skill-item">NumPy</span>
+                    <span class="skill-item">Scikit-learn</span>
+                    <span class="skill-item">Apache Spark</span>
+                    <span class="skill-item">NLP</span>
                 </div>
             </div>
         </div>
@@ -237,71 +294,81 @@
 
     <!-- EXPERIENCE SECTION -->
     <section class="content-section hidden" id="experience">
-        <h2 class="section-title">Professional Journey</h2>
+        <h2 class="section-title star-wars-text">BATTLE LOG</h2>
+        <div class="title-line"></div>
+
         <div class="timeline">
             <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <div class="company-name">FOURSYS</div>
-                    <div class="job-title">Desenvolvedor Open II | Java | Angular</div>
-                    <div class="job-period">Abril/2025 - Atual</div>
-                    <div class="job-description">
-                        <p>Desenvolvimento em Squad Multiatendimento para sistemas financeiros do Bradesco (Terminal Financeiro e Motor de Atendimento).</p>
+                <div class="timeline-marker"></div>
+                <div class="timeline-panel">
+                    <div class="panel-header">
+                        <h3 class="company-name">FOURSYS</h3>
+                        <span class="time-period">Abril/2025 - Present</span>
+                    </div>
+                    <div class="job-title">Developer Open II | Java | Angular</div>
+                    <div class="mission-details">
+                        <p>Multi-service Squad for Bradesco financial systems (Financial Terminal & Service Engine).</p>
                         <ul>
-                            <li>Integração com sistemas legados COBOL (mainframe)</li>
-                            <li>Desenvolvimento frontend em Angular</li>
-                            <li>Criação de xmlCopys e CobolCopys para comunicação entre sistemas</li>
+                            <li>Integration with COBOL legacy systems (mainframe)</li>
+                            <li>Frontend development in Angular</li>
+                            <li>Creation of xmlCopys and CobolCopys for inter-system communication</li>
                         </ul>
                     </div>
                 </div>
             </div>
 
             <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <div class="company-name">STEFANINI DO BRASIL</div>
-                    <div class="job-title">Desenvolvedor Full Stack | Quarkus | Angular</div>
-                    <div class="job-period">Junho/2024 - Outubro/2024</div>
-                    <div class="job-description">
+                <div class="timeline-marker"></div>
+                <div class="timeline-panel">
+                    <div class="panel-header">
+                        <h3 class="company-name">STEFANINI DO BRASIL</h3>
+                        <span class="time-period">Jun/2024 - Out/2024</span>
+                    </div>
+                    <div class="job-title">Full Stack Developer | Quarkus | Angular</div>
+                    <div class="mission-details">
                         <ul>
-                            <li>Migração de AngularJS para Angular 17</li>
-                            <li>Desenvolvimento de APIs REST com Quarkus</li>
-                            <li>Implementação de Kafka e Elasticsearch</li>
-                            <li>Deploy em OpenShift com pipelines Jenkins</li>
+                            <li>Migration from AngularJS to Angular 17</li>
+                            <li>REST API development with Quarkus</li>
+                            <li>Kafka and Elasticsearch implementation</li>
+                            <li>OpenShift deployment with Jenkins pipelines</li>
                         </ul>
                     </div>
                 </div>
             </div>
 
             <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <div class="company-name">CAPGEMINI DO BRASIL</div>
-                    <div class="job-title">Desenvolvedor Full Stack | Java | Angular</div>
-                    <div class="job-period">Novembro/2023 - Julho/2024</div>
-                    <div class="job-description">
+                <div class="timeline-marker"></div>
+                <div class="timeline-panel">
+                    <div class="panel-header">
+                        <h3 class="company-name">CAPGEMINI DO BRASIL</h3>
+                        <span class="time-period">Nov/2023 - Jul/2024</span>
+                    </div>
+                    <div class="job-title">Full Stack Developer | Java | Angular</div>
+                    <div class="mission-details">
                         <ul>
-                            <li>Desenvolvimento de APIs RESTful com Quarkus</li>
-                            <li>Modernização de interfaces com Angular 10+</li>
-                            <li>CI/CD com Jenkins e GitLab</li>
-                            <li>Containerização com Docker e Kubernetes</li>
+                            <li>RESTful API development with Quarkus</li>
+                            <li>Interface modernization with Angular 10+</li>
+                            <li>CI/CD with Jenkins and GitLab</li>
+                            <li>Containerization with Docker and Kubernetes</li>
                         </ul>
                     </div>
                 </div>
             </div>
 
             <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <div class="company-name">COOXUPÉ</div>
-                    <div class="job-title">Desenvolvedor Backend | Spring | Oracle EBS</div>
-                    <div class="job-period">Setembro/2022 - Outubro/2023</div>
-                    <div class="job-description">
+                <div class="timeline-marker"></div>
+                <div class="timeline-panel">
+                    <div class="panel-header">
+                        <h3 class="company-name">COOXUPÉ</h3>
+                        <span class="time-period">Set/2022 - Out/2023</span>
+                    </div>
+                    <div class="job-title">Backend Developer | Spring | Oracle EBS</div>
+                    <div class="mission-details">
                         <ul>
-                            <li>Desenvolvimento com Spring Framework completo</li>
-                            <li>Customização de Oracle EBS e PL/SQL</li>
-                            <li>Integração de sistemas via ETL</li>
-                            <li>Análise e mineração de dados</li>
+                            <li>Development with complete Spring Framework</li>
+                            <li>Oracle EBS customization and PL/SQL</li>
+                            <li>System integration via ETL</li>
+                            <li>Data analysis and mining</li>
                         </ul>
                     </div>
                 </div>
@@ -311,41 +378,47 @@
 
     <!-- CONTACT SECTION -->
     <section class="content-section hidden" id="contact">
-        <h2 class="section-title">Contact Terminal</h2>
+        <h2 class="section-title star-wars-text">TRANSMISSION</h2>
+        <div class="title-line"></div>
+
         <div class="contact-terminal">
             <div class="terminal-header">
-                <h3 class="terminal-title">Get In Touch</h3>
+                <h3 class="terminal-title">Communication Channel</h3>
                 <div class="terminal-status">
-                    <div class="status-indicator status-success"></div>
-                    <span>Available for Projects</span>
+                    <div class="status-light"></div>
+                    <span>ONLINE • READY FOR CONTACT</span>
                 </div>
             </div>
+
             <div class="contact-grid">
-                <div class="contact-item">
+                <div class="contact-card">
                     <div class="contact-icon">📧</div>
                     <div class="contact-info">
-                        <div class="contact-label">Email</div>
+                        <div class="contact-label">Holocron Mail</div>
                         <a href="mailto:luizfelipealveslopes9@gmail.com">luizfelipealveslopes9@gmail.com</a>
                     </div>
                 </div>
-                <div class="contact-item">
+
+                <div class="contact-card">
                     <div class="contact-icon">📱</div>
                     <div class="contact-info">
-                        <div class="contact-label">Phone</div>
+                        <div class="contact-label">Comlink</div>
                         <a href="tel:+5535992726208">(35) 99272-6208</a>
                     </div>
                 </div>
-                <div class="contact-item">
+
+                <div class="contact-card">
                     <div class="contact-icon">💼</div>
                     <div class="contact-info">
-                        <div class="contact-label">LinkedIn</div>
+                        <div class="contact-label">HoloNet Profile</div>
                         <a href="https://www.linkedin.com/in/luiz-felipe-alves-lopes/" target="_blank">linkedin.com/in/luiz-felipe-alves-lopes</a>
                     </div>
                 </div>
-                <div class="contact-item">
+
+                <div class="contact-card">
                     <div class="contact-icon">📍</div>
                     <div class="contact-info">
-                        <div class="contact-label">Location</div>
+                        <div class="contact-label">Coordinates</div>
                         <span>São Paulo, Brasil</span>
                     </div>
                 </div>
@@ -355,12 +428,13 @@
 </main>
 
 <footer>
-    <p>&copy; 2025 Luiz Felipe Alves Lopes • Full Stack Developer</p>
+    <p class="footer-text">© 2025 LUIZ FELIPE ALVES LOPES • FULL STACK DEVELOPER</p>
     <p class="footer-links">
         <a href="https://github.com" target="_blank">GitHub</a> •
         <a href="https://www.linkedin.com/in/luiz-felipe-alves-lopes/" target="_blank">LinkedIn</a> •
-        <a href="mailto:luizfelipealveslopes9@gmail.com">Email</a>
+        <a href="mailto:luizfelipealveslopes9@gmail.com">Contact</a>
     </p>
+    <p class="footer-quote">"May the Code be with you"</p>
 </footer>
 
 <script src="script.js"></script>

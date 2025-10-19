@@ -1,56 +1,55 @@
-// Portfolio Script - Based on Exoplanet Hunter
+// STAR WARS PORTFOLIO - JavaScript
 
 // ========================================
-// UTILITY FUNCTIONS
+// GENERATE FLOATING PARTICLES
 // ========================================
 
 /**
- * Generate floating particles in the background
+ * Generate floating particles in the background (like previous design)
  */
 function generateParticles() {
-    const particlesContainer = document.getElementById('particles');
-    if (!particlesContainer) return;
+    const fastLayer = document.querySelector('.stars-fast');
+    if (!fastLayer) return;
 
     const particleCount = 50;
 
     for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
-        particle.className = 'particle';
+        particle.style.position = 'absolute';
+        particle.style.width = '2px';
+        particle.style.height = '2px';
+        particle.style.background = 'rgba(212, 175, 95, 0.6)';
+        particle.style.borderRadius = '50%';
+        particle.style.boxShadow = '0 0 4px rgba(212, 175, 95, 0.8)';
 
         // Random positioning
         particle.style.left = Math.random() * 100 + '%';
         particle.style.top = Math.random() * 100 + '%';
 
-        // Random animation delay for staggered effect
+        // Random animation delay and duration
         particle.style.animationDelay = Math.random() * 10 + 's';
         particle.style.animationDuration = (10 + Math.random() * 5) + 's';
+        particle.style.animation = 'float-particle 15s infinite ease-in-out';
 
-        particlesContainer.appendChild(particle);
+        fastLayer.appendChild(particle);
     }
 }
 
-/**
- * Animate counter from 0 to target value
- */
-function animateCounter(id, target, suffix = '') {
-    const element = document.getElementById(id);
-    if (!element) return;
+// ========================================
+// STAR WARS SOUND EFFECTS (Optional)
+// ========================================
 
-    let current = 0;
-    const increment = target / 50;
-    const duration = 2000;
-    const stepTime = duration / 50;
+const sounds = {
+    hover: () => {
+        // Você pode adicionar sons do Star Wars aqui se desejar
+        // const audio = new Audio('path/to/sound.mp3');
+        // audio.play();
+    }
+};
 
-    const counter = setInterval(() => {
-        current += increment;
-        if (current >= target) {
-            element.textContent = target + suffix;
-            clearInterval(counter);
-        } else {
-            element.textContent = Math.floor(current) + suffix;
-        }
-    }, stepTime);
-}
+// ========================================
+// UTILITY FUNCTIONS
+// ========================================
 
 /**
  * Show/hide loading overlay
@@ -63,17 +62,23 @@ function showLoading(show) {
 }
 
 /**
- * Navigate between sections
+ * Navigate between sections with Star Wars transition
  */
 window.showSection = (sectionId) => {
-    console.log('Navigating to:', sectionId);
+    console.log('🚀 Hyperjump to:', sectionId);
 
-    // Hide all sections
+    // Hide all sections with fade effect
     document.querySelectorAll('.content-section').forEach(section => {
         if (section.id !== sectionId) {
-            section.classList.add('hidden');
+            section.style.opacity = '0';
+            setTimeout(() => {
+                section.classList.add('hidden');
+            }, 300);
         } else {
             section.classList.remove('hidden');
+            setTimeout(() => {
+                section.style.opacity = '1';
+            }, 50);
         }
     });
 
@@ -81,15 +86,40 @@ window.showSection = (sectionId) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
     // Highlight active nav button
-    document.querySelectorAll('nav button').forEach(button => {
+    document.querySelectorAll('.nav-btn').forEach(button => {
         const buttonSection = button.getAttribute('onclick').match(/'(.+)'/)[1];
         if (buttonSection === sectionId) {
-            button.style.color = 'var(--primary-blue)';
+            button.style.color = 'var(--sw-yellow)';
+            button.style.textShadow = '0 0 10px rgba(255, 232, 31, 0.6)';
         } else {
-            button.style.color = 'var(--off-white)';
+            button.style.color = 'var(--light-gray)';
+            button.style.textShadow = 'none';
         }
     });
 };
+
+/**
+ * Animate counter with Star Wars effect
+ */
+function animateCounter(id, target, suffix = '') {
+    const element = document.getElementById(id);
+    if (!element) return;
+
+    let current = 0;
+    const increment = target / 60;
+    const duration = 2500;
+    const stepTime = duration / 60;
+
+    const counter = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+            element.textContent = target + suffix;
+            clearInterval(counter);
+        } else {
+            element.textContent = Math.floor(current) + suffix;
+        }
+    }, stepTime);
+}
 
 // ========================================
 // SCROLL ANIMATIONS
@@ -116,17 +146,18 @@ function setupScrollAnimations() {
     // Observe all animatable elements
     const animatableSelectors = [
         '.timeline-item',
-        '.skill-category',
-        '.action-card',
-        '.about-card',
-        '.contact-item'
+        '.arsenal-card',
+        '.specialty-card',
+        '.chronicle-panel',
+        '.contact-card',
+        '.achievement-panel'
     ];
 
     animatableSelectors.forEach(selector => {
         document.querySelectorAll(selector).forEach(el => {
             el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
             observer.observe(el);
         });
     });
@@ -137,11 +168,11 @@ function setupScrollAnimations() {
 // ========================================
 
 /**
- * Update active navigation link based on scroll position
+ * Update active navigation based on scroll position
  */
 function updateActiveNav() {
     const sections = document.querySelectorAll('.content-section');
-    const navButtons = document.querySelectorAll('nav button');
+    const navButtons = document.querySelectorAll('.nav-btn');
 
     let currentSection = '';
 
@@ -157,41 +188,38 @@ function updateActiveNav() {
     navButtons.forEach(button => {
         const buttonSection = button.getAttribute('onclick').match(/'(.+)'/)[1];
         if (buttonSection === currentSection) {
-            button.style.color = 'var(--primary-blue)';
+            button.style.color = 'var(--sw-yellow)';
+            button.style.textShadow = '0 0 10px rgba(255, 232, 31, 0.6)';
         } else {
-            button.style.color = 'var(--off-white)';
+            button.style.color = 'var(--light-gray)';
+            button.style.textShadow = 'none';
         }
     });
 }
 
 // ========================================
-// TYPING EFFECT (Optional Enhancement)
+// PARALLAX EFFECT
 // ========================================
 
 /**
- * Create typewriter effect for text
+ * Add parallax effect to enhance depth
  */
-function typeWriter(element, text, speed = 50) {
-    let i = 0;
-    element.textContent = '';
+function handleParallax() {
+    const scrolled = window.pageYOffset;
+    const elements = document.querySelectorAll('.star-wars-text');
 
-    function type() {
-        if (i < text.length) {
-            element.textContent += text.charAt(i);
-            i++;
-            setTimeout(type, speed);
-        }
-    }
-
-    type();
+    elements.forEach(element => {
+        const speed = 0.05;
+        element.style.transform = `translateY(${scrolled * speed}px)`;
+    });
 }
 
 // ========================================
-// SMOOTH SCROLL FOR ANCHOR LINKS
+// SMOOTH SCROLL
 // ========================================
 
 /**
- * Setup smooth scrolling for all anchor links
+ * Setup smooth scrolling for all links
  */
 function setupSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -209,37 +237,95 @@ function setupSmoothScroll() {
 }
 
 // ========================================
-// PARALLAX EFFECT ON SCROLL (Optional)
+// HOVER EFFECTS
 // ========================================
 
 /**
- * Add subtle parallax effect to background elements
+ * Add special hover effects to cards
  */
-function handleParallax() {
-    const scrolled = window.pageYOffset;
-    const techCore = document.querySelector('.tech-core');
+function setupHoverEffects() {
+    // Add glow effect on hover for nav buttons
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.addEventListener('mouseenter', () => {
+            sounds.hover();
+        });
+    });
 
-    if (techCore) {
-        techCore.style.transform = `translate(-50%, -50%) translateY(${scrolled * 0.1}px)`;
-    }
+    // Add glow effect on specialty cards
+    document.querySelectorAll('.specialty-card').forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.boxShadow = '0 0 40px rgba(255, 232, 31, 0.4)';
+        });
+
+        card.addEventListener('mouseleave', function() {
+            this.style.boxShadow = '';
+        });
+    });
 }
+
+// ========================================
+// TYPEWRITER EFFECT (Optional)
+// ========================================
+
+/**
+ * Create Star Wars crawl-like typing effect
+ */
+function typeWriter(element, text, speed = 50) {
+    let i = 0;
+    element.textContent = '';
+    element.style.opacity = '1';
+
+    function type() {
+        if (i < text.length) {
+            element.textContent += text.charAt(i);
+            i++;
+            setTimeout(type, speed);
+        }
+    }
+
+    type();
+}
+
+// ========================================
+// EASTER EGGS
+// ========================================
+
+/**
+ * Konami Code Easter Egg
+ */
+let konamiCode = [];
+const konamiPattern = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+
+document.addEventListener('keydown', (e) => {
+    konamiCode.push(e.key);
+    konamiCode.splice(-konamiPattern.length - 1, konamiCode.length - konamiPattern.length);
+
+    if (konamiCode.join('').includes(konamiPattern.join(''))) {
+        console.log('🌟 The Force is strong with you! 🌟');
+        console.log('May the Code be with you, always.');
+        // Add special effect here
+        document.body.style.animation = 'rainbow 2s infinite';
+    }
+});
 
 // ========================================
 // INITIALIZATION
 // ========================================
 
 /**
- * Initialize all portfolio features on page load
+ * Initialize all Star Wars portfolio features
  */
 function initializePortfolio() {
+    console.log('🌌 A long time ago in a galaxy far, far away...');
     console.log('🚀 Portfolio initializing...');
 
-    // Generate visual elements
+    // Generate floating particles
     generateParticles();
 
-    // Setup animations
+    // Setup animations and effects
     setupScrollAnimations();
     setupSmoothScroll();
+    setupHoverEffects();
 
     // Animate counters on hero section
     setTimeout(() => {
@@ -248,10 +334,12 @@ function initializePortfolio() {
         animateCounter('techStack', 20, '+');
     }, 500);
 
-    // Show home section by default
-    showSection('home');
+    // Show home section by default with transition
+    setTimeout(() => {
+        showSection('home');
+    }, 100);
 
-    // Add scroll event listeners
+    // Add scroll event listeners with throttling
     let ticking = false;
     window.addEventListener('scroll', () => {
         if (!ticking) {
@@ -264,86 +352,34 @@ function initializePortfolio() {
         }
     });
 
-    console.log('✅ Portfolio initialized successfully!');
+    console.log('✅ Systems online. Ready for hyperspace!');
+    console.log('💫 May the Code be with you!');
 }
 
 // ========================================
-// MOBILE MENU TOGGLE (Optional Enhancement)
+// MOBILE MENU
 // ========================================
 
 /**
  * Setup mobile menu functionality
  */
 function setupMobileMenu() {
-    // This can be implemented if you want a hamburger menu for mobile
-    const header = document.querySelector('header');
-    const nav = document.querySelector('nav');
-
-    // Add mobile menu button if needed
     if (window.innerWidth <= 768) {
-        console.log('Mobile view detected');
-        // Add mobile menu logic here
+        console.log('📱 Mobile systems active');
+        const nav = document.querySelector('nav');
+        if (nav) {
+            nav.style.flexDirection = 'column';
+            nav.style.alignItems = 'center';
+        }
     }
 }
 
 // ========================================
-// EVENT LISTENERS
-// ========================================
-
-// Wait for DOM to be fully loaded
-document.addEventListener('DOMContentLoaded', () => {
-    initializePortfolio();
-    setupMobileMenu();
-});
-
-// Handle window resize
-window.addEventListener('resize', () => {
-    setupMobileMenu();
-});
-
-// Optional: Add easter egg or fun interaction
-document.addEventListener('keydown', (e) => {
-    // Press 'D' for developer mode (example)
-    if (e.key === 'd' && e.ctrlKey) {
-        console.log('🎯 Developer mode activated!');
-        console.log('Portfolio by Luiz Felipe Alves Lopes');
-        console.log('Stack: HTML5, CSS3, Vanilla JavaScript');
-    }
-});
-
-// ========================================
-// CONTACT FORM HANDLER (if you add a form)
+// LAZY LOADING
 // ========================================
 
 /**
- * Handle contact form submission
- */
-function handleContactForm() {
-    const form = document.querySelector('#contact-form');
-
-    if (form) {
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            showLoading(true);
-
-            // Add your form submission logic here
-            // For example, using EmailJS or a backend API
-
-            setTimeout(() => {
-                showLoading(false);
-                alert('Mensagem enviada com sucesso!');
-                form.reset();
-            }, 2000);
-        });
-    }
-}
-
-// ========================================
-// PERFORMANCE OPTIMIZATION
-// ========================================
-
-/**
- * Lazy load images when they come into viewport
+ * Lazy load images for performance
  */
 function setupLazyLoading() {
     const images = document.querySelectorAll('img[data-src]');
@@ -362,19 +398,55 @@ function setupLazyLoading() {
     images.forEach(img => imageObserver.observe(img));
 }
 
-// Call lazy loading setup
-setupLazyLoading();
-
 // ========================================
-// EXPORT FOR TESTING (Optional)
+// EVENT LISTENERS
 // ========================================
 
-// If you're using modules, you can export functions for testing
+// Initialize on DOM load
+document.addEventListener('DOMContentLoaded', () => {
+    initializePortfolio();
+    setupMobileMenu();
+    setupLazyLoading();
+});
+
+// Handle window resize
+window.addEventListener('resize', () => {
+    setupMobileMenu();
+});
+
+// Add fade-in effect to sections
+document.querySelectorAll('.content-section').forEach(section => {
+    section.style.transition = 'opacity 0.5s ease';
+});
+
+// ========================================
+// PERFORMANCE MONITORING (Optional)
+// ========================================
+
+if (performance.navigation.type === 1) {
+    console.log('🔄 Page reloaded - Systems rebooting');
+} else {
+    console.log('🎬 First contact - Welcome to the portfolio');
+}
+
+// Log performance metrics
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        const perfData = performance.timing;
+        const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
+        console.log(`⚡ Hyperdrive engaged in ${pageLoadTime}ms`);
+    }, 0);
+});
+
+// ========================================
+// EXPORT (if using modules)
+// ========================================
+
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
-        generateParticles,
-        animateCounter,
         showSection,
-        setupScrollAnimations
+        animateCounter,
+        setupScrollAnimations,
+        initializePortfolio
     };
 }
